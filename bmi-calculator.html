@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <title>BMI Calculator</title>
+        <style>
+            .container {
+                width: 500px;
+                margin: 50px auto;
+                border: 1px solid #000000;
+                padding: 30px 0;
+            }
+            .wrapper {
+                display: flex;
+                justify-content: space-between;
+                padding: 30px;
+                gap: 50px;
+            }
+            .title {
+                text-align: center;
+            }
+            .title h1 {
+                margin: 0 0 25px 0;
+            }
+            h4 {
+                margin: 0;
+            }
+            .left .height,
+            .left .weight {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 5px;
+                margin-bottom: 20px;
+            }
+            .weight {
+                margin-bottom: 40px;
+            }
+            .box {
+                padding: 10px 15px;
+                border: 1px solid #d5d5d5;
+                border-radius: 10px;
+                width: 190px;
+            }
+            .result-wrapper {
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .button.calculate {
+                background: transparent;
+                padding: 0 23px;
+                border: 1px solid #000000;
+                border-radius: 15px;
+                cursor: pointer;
+            }
+            .right .result {
+                background-color: transparent;
+                width: 168px;
+                height: 168px;
+                line-height: 168px;
+                border-radius: 15px;
+                font-size: 50px;
+                text-align: center;
+            }
+            .ranges {
+                margin-top: 40px;
+            }
+            .ranges p {
+                margin: 5px 0;
+                text-align: center;
+            }
+            .ranges p.number {
+                text-align: left;
+            }
+            .ranges {
+                display: flex;
+                justify-content: center;
+            }
+            .range .line {
+                height: 10px;
+                width: 110px;
+            }
+            .range.yellow .line.yellow {
+                background-color: #ffe355;
+            }
+            .range.green .line.green {
+                background-color: #5cf175;
+            }
+            .range.orange .line.orange {
+                background-color: #fd8f50;
+            }
+            .range.red .line.red {
+                background-color: #e94949;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">
+                <h1>BMI Calculator</h1>
+            </div>
+            <div class="wrapper">
+                <div class="left">
+                    <div class="height">
+                        <input class="box" type="text" placeholder="height" id="height"/>
+                        <h4>cm</h4>
+                    </div>
+                    <div class="weight">
+                        <input class="box" type="text" placeholder="weight" id="weight"/>
+                        <h4>kg</h4>
+                    </div>
+                    <div class="result-wrapper">
+                        <button class="button calculate" onclick="calculateBMI()"><h3>calculate my BMI!</h3></button>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="result" id="result"></div>
+                </div>
+            </div>
+            <div class="ranges">
+                <div class="range yellow">
+                    <p class="number">0</p>
+                    <div class="line yellow"></div>
+                    <p>Underweight</p>
+                </div>
+                <div class="range green">
+                    <p class="number">18.5</p>
+                    <div class="line green"></div>
+                    <p>Healthy Weight</p>
+                </div>
+                <div class="range orange">
+                    <p class="number">25</p>
+                    <div class="line orange"></div>
+                    <p>Overweight</p>
+                </div>
+                <div class="range red">
+                    <p class="number">30</p>
+                    <div class="line red"></div>
+                    <p>Obese</p>
+                </div>
+            </div>
+        </div>
+        <script>
+            function calculateBMI() {
+                var h = document.getElementById("height").value;
+                var w = document.getElementById("weight").value;
+                var bmi = w/((h/100)**2);
+                document.getElementById("result").innerHTML = bmi.toPrecision(4);
+                if (bmi < 18.5) {
+                    document.getElementById("result").style.backgroundColor = "#ffe355";
+                }
+                if (18.5 < bmi && bmi < 24.9) {
+                    document.getElementById("result").style.backgroundColor = "#5cf175";
+                }
+                if (25 < bmi && bmi < 29.9) {
+                    document.getElementById("result").style.backgroundColor = "#fd8f50";
+                }
+                if (bmi >= 30) {
+                    document.getElementById("result").style.backgroundColor = "#e94949";
+                }
+            }
+        </script>
+    </body>
+</html>
